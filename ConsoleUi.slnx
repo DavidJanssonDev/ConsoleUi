@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="ConsoleUi.Core/ConsoleUi.Core.csproj" />
+  <Project Path="ConsoleUi.Demo/ConsoleUi.Demo.csproj" />
+  <Project Path="ConsoleUi.Logger/ConsoleUi.Logger.csproj" />
+</Solution>
