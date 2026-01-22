@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "Run Demo + Logger",
+    "Projects": [
+      {
+        "Path": "ConsoleUi.Demo\\ConsoleUi.Demo.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "ConsoleUi.Logger\\ConsoleUi.Logger.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

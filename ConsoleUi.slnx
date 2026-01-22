@@ -1,5 +1,6 @@
 <Solution>
   <Folder Name="/Solution Items/">
+    <File Path=".gitignore" />
     <File Path="ConsoleUi.slnLaunch.user" />
   </Folder>
   <Project Path="ConsoleUi.Core/ConsoleUi.Core.csproj" />
