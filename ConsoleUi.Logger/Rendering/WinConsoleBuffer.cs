@@ -23,17 +23,18 @@ public sealed class WinConsoleBuffer
     public int Width => _w;
     public int Height => _h;
 
-    public void ResizeIfNeeded()
+    public bool ResizeIfNeeded()
     {
         int w = Console.WindowWidth;
         int h = Console.WindowHeight;
 
-        if (w <= 0 || h <= 0) return;
-        if (w == _w && h == _h) return;
+        if (w <= 0 || h <= 0) return false;
+        if (w == _w && h == _h) return false;
 
         _w = w;
         _h = h;
-        _buffer = new CharInfo[w * h];
+        _buffer = new CharInfo[_w * _h];
+        return true;
     }
 
     public void Clear(ConsoleColor fg = ConsoleColor.Gray, ConsoleColor bg = ConsoleColor.Black)

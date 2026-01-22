@@ -1,15 +1,17 @@
 ﻿using ConsoleUi.Core.Logging;
 using ConsoleUi.Demo.Logging;
 
-await using AsyncPipeLogger log = await AsyncPipeLogger.ConnectAsync(PipeConstants.PipeName);
+await using var logger = await AsyncPipeLogger.ConnectAsync(PipeConstants.PipeName);
 
-log.Info("App", "Renderer started");
+CategoryLogger render = logger.For("Render");
+CategoryLogger layout = logger.For("Layout");
 
-for (int frame = 1; frame <= 300; frame++)
+render.Info("Renderer started");
+
+for (int i = 0; i < 100; i++)
 {
-    log.Debug("Render", $"Frame {frame}");
-    await Task.Delay(10);
+    render.Debug($"Frame {i}");
+    await Task.Delay(30);
 }
 
-log.Warn("App", "Renderer exiting");
-Console.ReadLine();
+layout.Warn("Layout recalculated");
