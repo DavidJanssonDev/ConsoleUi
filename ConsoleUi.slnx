@@ -1,4 +1,7 @@
 <Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="ConsoleUi.slnLaunch.user" />
+  </Folder>
   <Project Path="ConsoleUi.Core/ConsoleUi.Core.csproj" />
   <Project Path="ConsoleUi.Demo/ConsoleUi.Demo.csproj" />
   <Project Path="ConsoleUi.Logger/ConsoleUi.Logger.csproj" />
