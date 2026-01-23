@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ConsoleUi.Core\ConsoleUi.Core.csproj" />
+    <ProjectReference Include="..\ConsoleUI.Rendering\ConsoleUI.Rendering.csproj" />
   </ItemGroup>
 
 </Project>
