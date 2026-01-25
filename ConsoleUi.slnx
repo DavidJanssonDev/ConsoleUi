@@ -3,6 +3,7 @@
     <File Path=".gitignore" />
     <File Path="ConsoleUi.slnLaunch.user" />
     <File Path="drawing1.excalidraw" />
+    <File Path="TODO.md" />
   </Folder>
   <Project Path="ConsoleUi.Core/ConsoleUi.Core.csproj" />
   <Project Path="ConsoleUi.Demo/ConsoleUi.Demo.csproj" />
