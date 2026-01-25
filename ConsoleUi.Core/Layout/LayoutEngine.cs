@@ -1,7 +1,4 @@
 ﻿using ConsoleUi.Core.Primitives;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ConsoleUi.Core.Layout;
 
@@ -20,7 +17,7 @@ public sealed class LayoutEngine
         LayoutChildrenVertical(root);
     }
 
-    private void LayoutChildrenVertical(Element parent)
+    private static void LayoutChildrenVertical(Element parent)
     {
         float cursorY = parent.ContentBox.Top;
 

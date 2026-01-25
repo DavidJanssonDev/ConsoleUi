@@ -7,5 +7,5 @@
   <Project Path="ConsoleUi.Core/ConsoleUi.Core.csproj" />
   <Project Path="ConsoleUi.Demo/ConsoleUi.Demo.csproj" />
   <Project Path="ConsoleUi.Logger/ConsoleUi.Logger.csproj" />
-  <Project Path="ConsoleUI.Rendering/ConsoleUI.Rendering.csproj" Id="ea644d16-f3d7-4f7c-a90e-52b31a13e2d2" />
+  <Project Path="ConsoleUI.Rendering/ConsoleUI.Rendering.csproj" Id="ea644d16-f3d7-4f7c-a90e-52b31a13e2d2" DisplayName="ConsoleUi.Rendering" />
 </Solution>
