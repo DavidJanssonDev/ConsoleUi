@@ -8,29 +8,31 @@ namespace ConsoleUI.Demo.Logging;
 /// A lightweight logger bound to a specific category (Render, Layout, etc.).
 /// </summary>
 /// <remarks>
-/// This struct: <br/>
-/// - formats log messages <br/>
-/// - adds metadata (file, line, project) <br/>
-/// - sends the final string to AsyncPipeLogger <br/>
+/// This struct:
+/// <list type="bullet">
+///   <item>
+///     <description>Adds metadata (file, line, project)</description>
+///   </item>
+///   <item>
+///     <description>Delegates formatting and transport to <c>AsyncPipeLogger</c></description>
+///   </item>
+/// </list>
 /// </remarks>
+
 public readonly struct CategoryLogger
 {
-    // Reference to the shared root logger
     private readonly AsyncPipeLogger _root;
-
-    // Category name (e.g. "Render", "Layout")
     private readonly string _category;
 
-    // Constructor (called from AsyncPipeLogger.For)
     public CategoryLogger(AsyncPipeLogger root, string category)
     {
         _root = root;
         _category = category;
     }
 
-    // -------------------------------------------
-
-    #region Public Logging Methods
+    // -------------------------------------------------
+    // Public API
+    // -------------------------------------------------
 
     public void Trace(string msg,
         [CallerFilePath] string file = "",
@@ -57,54 +59,45 @@ public readonly struct CategoryLogger
         [CallerLineNumber] int line = 0)
         => Write("Error", msg, file, line);
 
-    #endregion
-
-    // -------------------------------------------
-
-    #region Core formatter 
+    // -------------------------------------------------
+    // Core formatter
+    // -------------------------------------------------
 
     private void Write(string level, string msg, string file, int line)
     {
-        // Extract just the file name (Program.cs instead of full path)
         string fileName = Path.GetFileName(file);
-
-        // Guess which project this file belongs to
         string project = InferProjectFromFilePath(file);
 
-        // Build the final message format
-        // LEVEL|CATEGORY|PROJECT|FILE|LINE|MESSAGE
-        string payload = $"{level}|{_category}|{project}|{fileName}|{line}|{Escape(msg)}";
-
-        // Send it to the async logger
-        _root.Enqueue(payload);
+        _root.Enqueue(
+            level: level,
+            category: _category,
+            project: project,
+            file: fileName,
+            line: line,
+            message: msg
+        );
     }
 
-    #endregion
-
-    // -------------------------------------------
-
-    #region Helpers
+    // -------------------------------------------------
+    // Helpers
+    // -------------------------------------------------
 
     private static string InferProjectFromFilePath(string filePath)
     {
-        // If compiler didn’t give us a file path
         if (string.IsNullOrWhiteSpace(filePath))
             return "Unknown";
 
-        // Split path into folders
         string[] parts = filePath.Split(
-            Path.DirectorySeparatorChar, 
+            Path.DirectorySeparatorChar,
             Path.AltDirectorySeparatorChar
         );
 
-        // Look for folders like "ConsoleUi.Demo" or "ConsoleUi.Core"
         foreach (string p in parts)
         {
             if (p.StartsWith("ConsoleUi.", StringComparison.OrdinalIgnoreCase))
-                return p; 
+                return p;
         }
 
-        // Fallback: use the parent directory name
         try
         {
             string? dir = Path.GetDirectoryName(filePath);
@@ -115,10 +108,4 @@ public readonly struct CategoryLogger
 
         return "Unknown";
     }
-
-    // Replace characters that would break pipe parsing
-    private static string Escape(string s)
-        => s.Replace("|", "¦").Replace("\n", "\\n");
-
-    #endregion
 }

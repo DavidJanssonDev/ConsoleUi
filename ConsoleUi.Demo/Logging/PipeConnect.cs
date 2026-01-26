@@ -1,63 +1,54 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO.Pipes;
-using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace ConsoleUI.Demo.Logging;
 
 /// <summary>
-/// Helper for connecting to a named pipe with retries.<br/>
-///
-/// This prevents startup race conditions where the 
-/// logger process is not ready yet.
+/// Helper for connecting to a named pipe with retries.
+/// Supports cancellation so shutdown is instant.
 /// </summary>
 public static class PipeConnect
 {
-    /// <summary>
-    /// Tries to connect to a named pipe until it succeeds or times out.
-    /// </summary>
-    /// <param name="pipeName">The name of the pipe to connect to</param>
-    /// <param name="totalWaitMs">Maximum total time to keep retrying</param>
-    /// <param name="attemptTimeoutMs">Timeout for a single attempt</param>
     public static async Task<NamedPipeClientStream> ConnectWithRetryAsync(
         string pipeName,
         int totalWaitMs = 8000,
-        int attemptTimeoutMs = 300)
+        int attemptTimeoutMs = 300,
+        CancellationToken token = default)
     {
-        // Start a timer to track total wait time
         Stopwatch sw = Stopwatch.StartNew();
 
-        // Keep trying until we run out of total time
         while (sw.ElapsedMilliseconds < totalWaitMs)
         {
-            // Create a pipe client that can WRITE to the server
-            NamedPipeClientStream client = new(
-                ".", // local machine
-                pipeName, // pipe name
-                PipeDirection.Out, // we only send data
+            token.ThrowIfCancellationRequested();
+
+            var client = new NamedPipeClientStream(
+                ".",
+                pipeName,
+                PipeDirection.Out,
                 PipeOptions.Asynchronous
             );
 
             try
             {
-                // Try to connect, but only wait a short time
-                await client.ConnectAsync(attemptTimeoutMs);
-
-                // Success! Return the connected pipe
+                await client.ConnectAsync(attemptTimeoutMs, token)
+                            .ConfigureAwait(false);
                 return client;
             }
-            catch (TimeoutException)
+            catch (OperationCanceledException)
             {
-                // This attempt failed — clean up
                 client.Dispose();
-
-                // Wait a little before trying again
-                await Task.Delay(100);
+                throw;
+            }
+            catch
+            {
+                client.Dispose();
+                await Task.Delay(100, token).ConfigureAwait(false);
             }
         }
 
-        // If we get here, all retries failed
         throw new TimeoutException(
             $"Could not connect to pipe '{pipeName}' within {totalWaitMs}ms."
         );
