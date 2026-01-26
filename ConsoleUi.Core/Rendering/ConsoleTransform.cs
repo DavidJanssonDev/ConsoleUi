@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ConsoleUi.Core.Rendering;
+namespace ConsoleUI.Core.Rendering;
 
 public readonly record struct CellPoint(int X, int Y);
 public sealed class ConsoleTransform

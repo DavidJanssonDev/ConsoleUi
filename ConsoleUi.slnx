@@ -1,12 +1,15 @@
 <Solution>
   <Folder Name="/Solution Items/">
     <File Path=".gitignore" />
+    <File Path="ARCHITECTURE.md" />
     <File Path="ConsoleUi.slnLaunch.user" />
     <File Path="drawing1.excalidraw" />
+    <File Path="README.md" />
+    <File Path="ROADMAP.md" />
     <File Path="TODO.md" />
   </Folder>
   <Project Path="ConsoleUi.Core/ConsoleUi.Core.csproj" />
   <Project Path="ConsoleUi.Demo/ConsoleUi.Demo.csproj" />
   <Project Path="ConsoleUi.Logger/ConsoleUi.Logger.csproj" />
-  <Project Path="ConsoleUI.Rendering/ConsoleUI.Rendering.csproj" Id="ea644d16-f3d7-4f7c-a90e-52b31a13e2d2" DisplayName="ConsoleUi.Rendering" />
+  <Project Path="ConsoleUI.Rendering/ConsoleUI.Rendering.csproj" Id="ea644d16-f3d7-4f7c-a90e-52b31a13e2d2" />
 </Solution>

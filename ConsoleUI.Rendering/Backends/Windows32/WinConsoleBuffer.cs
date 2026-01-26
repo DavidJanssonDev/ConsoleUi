@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using System.Runtime.InteropServices;
 
-namespace ConsoleUi.Rendering.Backends.Windows32;
+namespace ConsoleUI.Rendering.Backends.Windows32;
 
 public sealed class WinConsoleBuffer
 {

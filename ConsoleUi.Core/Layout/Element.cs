@@ -1,6 +1,6 @@
-﻿using ConsoleUi.Core.Primitives;
+﻿using ConsoleUI.Core.Primitives;
 
-namespace ConsoleUi.Core.Layout;
+namespace ConsoleUI.Core.Layout;
 
 public sealed class Element
 {

@@ -1,4 +1,4 @@
-﻿namespace ConsoleUi.Core.Primitives;
+﻿namespace ConsoleUI.Core.Primitives;
 
 public readonly record struct RectF(Vec2 Possition, Vec2 Size)
 {

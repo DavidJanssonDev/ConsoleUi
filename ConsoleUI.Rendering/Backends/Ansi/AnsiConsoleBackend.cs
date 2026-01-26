@@ -1,8 +1,8 @@
 ﻿using System.Text;
-using ConsoleUi.Rendering.Abstractions;
-using ConsoleUi.Rendering.Surface;
+using ConsoleUI.Rendering.Abstractions;
+using ConsoleUI.Rendering.Surface;
 
-namespace ConsoleUi.Rendering.Backends.Ansi;
+namespace ConsoleUI.Rendering.Backends.Ansi;
 
 /// <summary>
 /// Cross-platform backend using ANSI/VT escape sequences.

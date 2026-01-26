@@ -1,7 +1,7 @@
-﻿using ConsoleUi.Rendering.Abstractions;
+﻿using ConsoleUI.Rendering.Abstractions;
 using System.ComponentModel;
 
-namespace ConsoleUi.Rendering.Surface;
+namespace ConsoleUI.Rendering.Surface;
 
 public sealed class SurfaceBuffer
 {

@@ -1,4 +1,4 @@
-﻿namespace ConsoleUi.Rendering.Abstractions;
+﻿namespace ConsoleUI.Rendering.Abstractions;
 
 /// <summary>
 /// High-level framebuffer API used by apps (Logger/UI). <br/>

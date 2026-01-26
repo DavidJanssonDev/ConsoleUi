@@ -1,12 +1,12 @@
-﻿using ConsoleUi.Core.Logging;
-using ConsoleUi.Rendering.Abstractions;
-using ConsoleUi.Rendering.Factory;
-using ConsoleUi.Rendering.Surface;
+﻿using ConsoleUI.Core.Logging;
+using ConsoleUI.Rendering.Abstractions;
+using ConsoleUI.Rendering.Factory;
+using ConsoleUI.Rendering.Surface;
 using System;
 using System.IO.Pipes;
 using System.Text;
 
-namespace ConsoleUi.Logger;
+namespace ConsoleUI.Logger;
 
 /// <summary>
 /// The main program for the Logger UI.
@@ -21,7 +21,7 @@ namespace ConsoleUi.Logger;
 /// Architecture:
 /// <list type="bullet">
 ///   <item><description><b>Pipe reader loop</b> (data thread): reads lines from the named pipe and appends to <see cref="Rows"/>.</description></item>
-///   <item><description><b>Render loop</b> (UI thread): handles keyboard input + redraws the screen using <see cref="WinConsoleBuffer"/>.</description></item>
+///   <item><description><b>Render loop</b> (UI thread): handles keyboard input + redraws the screen using <see cref="IConsoleSurface"/>.</description></item>
 /// </list>
 /// </remarks>
 public static class Program
@@ -33,9 +33,13 @@ public static class Program
     private const int CategoryWidth = 14;
 
     private static readonly List<LogRow> Rows = new(5000);
-    private static readonly object _lock = new();
+    private static readonly Lock _lock = new();
 
     private static volatile bool _dirty = true;
+    
+    private static int _scrollFromBottom = 0;
+    private static volatile bool _followTail = true;
+
 
     public static async Task Main()
     {
@@ -137,13 +141,8 @@ public static class Program
         int bodyHeight = Math.Max(0, bodyBottom - bodyTop);
 
         // Borders
-        s.Write(0, bodyTop - 1,
-            "├" + new string('─', Math.Max(0, w - 2)) + "┤",
-            ConsoleColor.Gray, ConsoleColor.Black);
-
-        s.Write(0, h - 1,
-            "└" + new string('─', Math.Max(0, w - 2)) + "┘",
-            ConsoleColor.Gray, ConsoleColor.Black);
+        s.Write(0, bodyTop - 1,"├" + new string('─', Math.Max(0, w - 2)) + "┤",ConsoleColor.Gray, ConsoleColor.Black);
+        s.Write(0, h - 1,      "└" + new string('─', Math.Max(0, w - 2)) + "┘",ConsoleColor.Gray, ConsoleColor.Black);
 
         for (int y = bodyTop; y < h - 1; y++)
         {
@@ -161,7 +160,8 @@ public static class Program
         }
 
         int drawY = bodyTop;
-        foreach (var row in visible)
+
+        foreach (LogRow row in visible)
         {
             if (drawY >= h - 1) break;
             DrawRow(s, drawY++, row);

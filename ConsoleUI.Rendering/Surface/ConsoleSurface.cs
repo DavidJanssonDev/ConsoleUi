@@ -1,6 +1,6 @@
-﻿using ConsoleUi.Rendering.Abstractions;
+﻿using ConsoleUI.Rendering.Abstractions;
 
-namespace ConsoleUi.Rendering.Surface;
+namespace ConsoleUI.Rendering.Surface;
 
 /// <summary>
 /// Shared Framebuffer surface.

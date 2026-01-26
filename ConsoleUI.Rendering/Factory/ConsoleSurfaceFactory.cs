@@ -1,9 +1,9 @@
-﻿using ConsoleUi.Rendering.Abstractions;
-using ConsoleUi.Rendering.Backends.Ansi;
-using ConsoleUi.Rendering.Backends.Windows32;
-using ConsoleUi.Rendering.Surface;
+﻿using ConsoleUI.Rendering.Abstractions;
+using ConsoleUI.Rendering.Backends.Ansi;
+using ConsoleUI.Rendering.Backends.Windows32;
+using ConsoleUI.Rendering.Surface;
 
-namespace ConsoleUi.Rendering.Factory;
+namespace ConsoleUI.Rendering.Factory;
 
 public static class ConsoleSurfaceFactory
 {

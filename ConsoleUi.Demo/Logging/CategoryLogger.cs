@@ -2,7 +2,7 @@
 using System.IO; // Path helpers
 using System.Runtime.CompilerServices; // Caller info attributes
 
-namespace ConsoleUi.Demo.Logging;
+namespace ConsoleUI.Demo.Logging;
 
 /// <summary>
 /// A lightweight logger bound to a specific category (Render, Layout, etc.).

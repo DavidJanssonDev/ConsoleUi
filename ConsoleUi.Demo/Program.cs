@@ -1,5 +1,5 @@
-﻿using ConsoleUi.Core.Logging; // Shared constants (pipe name)
-using ConsoleUi.Demo.Logging; // Logger + helper classes
+﻿using ConsoleUI.Core.Logging; // Shared constants (pipe name)
+using ConsoleUI.Demo.Logging; // Logger + helper classes
 
 // STEP 1: Connect to the logger program through a named pipe
 //

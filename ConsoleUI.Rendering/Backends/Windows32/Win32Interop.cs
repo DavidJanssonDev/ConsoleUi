@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace ConsoleUi.Rendering.Backends.Windows32;
+namespace ConsoleUI.Rendering.Backends.Windows32;
 
 
 internal static class Win32Interop

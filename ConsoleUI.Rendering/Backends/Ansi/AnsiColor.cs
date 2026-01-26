@@ -1,4 +1,4 @@
-﻿namespace ConsoleUi.Rendering.Backends.Ansi;
+﻿namespace ConsoleUI.Rendering.Backends.Ansi;
 
 /// <summary>
 /// Maps ConsoleColor -> ANSI SGR codes.

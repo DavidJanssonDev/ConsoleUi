@@ -1,4 +1,4 @@
-﻿namespace ConsoleUi.Core;
+﻿namespace ConsoleUI.Core;
 
 public readonly record struct Vec2(float X, float Y)
 {

@@ -1,4 +1,4 @@
-﻿namespace ConsoleUi.Core.Primitives;
+﻿namespace ConsoleUI.Core.Primitives;
 
 public readonly record struct Thickness (float Left, float Top, float Right, float Bottom)
 {

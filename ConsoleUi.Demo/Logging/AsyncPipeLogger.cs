@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ConsoleUi.Demo.Logging;
+namespace ConsoleUI.Demo.Logging;
 
 /// <summary>
 /// AsyncPipeLogger sends log messages to another program using a named pipe

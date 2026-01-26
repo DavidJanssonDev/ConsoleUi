@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.IO.Pipes;
 using System.Text;
 
-namespace ConsoleUi.Demo.Logging;
+namespace ConsoleUI.Demo.Logging;
 
 /// <summary>
 /// Helper for connecting to a named pipe with retries.<br/>

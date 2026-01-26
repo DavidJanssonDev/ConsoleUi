@@ -1,4 +1,4 @@
-﻿namespace ConsoleUi.Rendering.Abstractions;
+﻿namespace ConsoleUI.Rendering.Abstractions;
 
 /// <summary>
 /// Low-level presenter.

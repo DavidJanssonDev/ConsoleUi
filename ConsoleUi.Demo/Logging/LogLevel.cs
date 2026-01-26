@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ConsoleUi.Demo.Logging;
+namespace ConsoleUI.Demo.Logging;
 
 /// <summary>
 /// Represents the severity (importance) of a log message. <br/>

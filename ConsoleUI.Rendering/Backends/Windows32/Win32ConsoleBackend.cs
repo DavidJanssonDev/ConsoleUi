@@ -1,6 +1,6 @@
-﻿using ConsoleUi.Rendering.Abstractions;
+﻿using ConsoleUI.Rendering.Abstractions;
 
-namespace ConsoleUi.Rendering.Backends.Windows32;
+namespace ConsoleUI.Rendering.Backends.Windows32;
 
 public sealed class Win32ConsoleBackend : IConsoleBackend
 {

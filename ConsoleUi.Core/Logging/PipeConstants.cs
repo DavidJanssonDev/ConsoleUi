@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ConsoleUi.Core.Logging;
+namespace ConsoleUI.Core.Logging;
 
 /// <summary>
 /// Holds shared constants used by the logging system.

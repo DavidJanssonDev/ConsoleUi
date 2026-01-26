@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace ConsoleUi.Rendering.Backends.Windows32;
+namespace ConsoleUI.Rendering.Backends.Windows32;
 
 [StructLayout(LayoutKind.Explicit)]
 internal struct Win32CharInfo

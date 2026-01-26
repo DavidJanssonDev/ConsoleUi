@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace ConsoleUi.Rendering.Backends.Ansi;
+namespace ConsoleUI.Rendering.Backends.Ansi;
 
 
 /// <summary>
